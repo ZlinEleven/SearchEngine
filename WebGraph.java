@@ -79,10 +79,10 @@ public class WebGraph {
     
     public void addLink(String source, String destination) throws IllegalArgumentException{
         if(!urls.contains(source)){
-            throw new IllegalArgumentException("Error: " + source +  "could not be found in the WebGraph.");
+            throw new IllegalArgumentException("Error: " + source +  " could not be found in the WebGraph.");
         }
         if(!urls.contains(destination)){
-            throw new IllegalArgumentException("Error: " + destination +  "could not be found in the WebGraph.");
+            throw new IllegalArgumentException("Error: " + destination +  " could not be found in the WebGraph.");
         }
         if(source == null || destination == null){
             throw new IllegalArgumentException("ERROR: URL cannot be found on web.");
@@ -104,6 +104,9 @@ public class WebGraph {
             throw new IllegalArgumentException("ERROR: URL cannot be found on web.");
         }
 
+        if(edges[index1][index2] == 1){
+            throw new IllegalArgumentException("ERROR: link was already established");
+        }
         edges[index1][index2] = 1;
     }
 
@@ -228,6 +231,14 @@ public class WebGraph {
     }
 
     public void printTableIndex(){
+        ArrayList<WebPage> indexOrder = getIndexOrder();
+
+        for(WebPage wp : indexOrder){
+            System.out.println(wp);
+        }
+    }
+
+    public ArrayList<WebPage> getIndexOrder(){
         ArrayList<WebPage> indexOrder = new ArrayList<WebPage>();
 
         for(WebPage wp : pages){
@@ -235,13 +246,18 @@ public class WebGraph {
         }
 
         Collections.sort(indexOrder, new IndexComparator());
+        return indexOrder;
+    }
 
-        for(WebPage wp : indexOrder){
+    public void printTableRank(){
+        ArrayList<WebPage> rankOrder = getRankOrder();
+
+        for(WebPage wp : rankOrder){
             System.out.println(wp);
         }
     }
 
-    public void printTableRank(){
+    public ArrayList<WebPage> getRankOrder(){
         ArrayList<WebPage> rankOrder = new ArrayList<WebPage>();
 
         for(WebPage wp : pages){
@@ -249,13 +265,18 @@ public class WebGraph {
         }
 
         Collections.sort(rankOrder, new RankComparator());
+        return rankOrder;
+    }
 
-        for(WebPage wp : rankOrder){
+    public void printTableURL(){
+        ArrayList<WebPage> URLOrder = getURLOrder();
+
+        for(WebPage wp : URLOrder){
             System.out.println(wp);
         }
     }
 
-    public void printTableURL(){
+    public ArrayList<WebPage> getURLOrder(){
         ArrayList<WebPage> URLOrder = new ArrayList<WebPage>();
 
         for(WebPage wp : pages){
@@ -263,10 +284,7 @@ public class WebGraph {
         }
 
         Collections.sort(URLOrder, new URLComparator());
-
-        for(WebPage wp : URLOrder){
-            System.out.println(wp);
-        }
+        return URLOrder;
     }
 
     public void printByKeyword(String keyword){

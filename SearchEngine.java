@@ -89,6 +89,7 @@ public class SearchEngine {
             menu.skipLine();
             selection = menu.choosePrompt(scan).toUpperCase();
         }
+        System.out.println("Goodbye.");
 
     }
 }

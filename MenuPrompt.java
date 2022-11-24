@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class MenuPrompt {
     String AP = "    (AP) - Add a new page to the graph.\n";
     String RP = "    (RP) - Remove a page from the graph.\n";
-    String AL = "    (AL) - Remove a link between pages in the graph.\n";
+    String AL = "    (AL) - Add a link between pages in the graph.\n";
     String RL = "    (RL) - Remove a link between pages in the graph.\n";
     String P =  "    (P)  - Print the graph.\n";
     String S =  "    (S)  - Search for pages with a keyword.\n";
